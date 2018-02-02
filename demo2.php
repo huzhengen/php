@@ -18,7 +18,13 @@ echo "<br>";
 echo $computer1->_name,'<br>';
 echo $computer1->_run(),'<hr>';
 
-setcookie('user', 'lufang', time()+3600);
+// setcookie('user', 'lufang', time()+3600);
 
-echo $_COOKIE['user'],'<br>';
-print_r($_COOKIE);
+// echo $_COOKIE['user'],'<hr>';
+// print_r($_COOKIE);
+
+if(isset($_COOKIE['user'])){
+	echo '欢迎'.$_COOKIE['user'].'<br>';
+}else{
+	echo '请登录';
+}
