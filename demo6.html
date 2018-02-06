@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo6</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- <form> -->
+    输入手机号：
+    <input type="text" name="phone" id="phone"><span id="txt"></span>
+    <br>
+    <button onclick="show()">验证</button>
+    <!-- </form> -->
+    <br>
+    <script>
+    var phoneReg = /^1(3|4|5|7|8)\d{9}$/;
+
+    function show() {
+        var phone = document.getElementById('phone').value;
+        var txt = document.getElementById('txt');
+
+        $.ajax({
+            url: 'demo6.php',
+            data: 'phone=' + phone,
+            type: 'POST',
+            success: function(data) {
+                console.log(data);
+                txt.innerHTML = data;
+                txt.style.color = 'green';
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        })
+
+        // var xmlHttp = new XMLHttpRequest();
+        // var url = 'demo6.php';
+        // xmlHttp.onreadystatechange = function stateChanged() {
+        //     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 'complete') {
+        //         if (!phoneReg.test(phone)) {
+        //             txt.innerHTML = '手机号有误';
+        //             txt.style.color = 'red';
+        //         } else {
+        //             txt.innerHTML = xmlHttp.responseText;
+        //             txt.style.color = 'green';
+        //         }
+        //     }
+        // };
+        // xmlHttp.open('POST', url, true);
+        // xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencode');
+        // xmlHttp.send('phone=' + phone);
+    }
+    </script>
+</body>
+
+</html>
